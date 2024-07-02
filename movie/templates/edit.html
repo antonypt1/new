@@ -1,0 +1,98 @@
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1542204165-65bf26472b9b.jpeg" type="image/x-icon">
+  <meta name="description" content="Explore the latest movies with free download options. Get access to movie photos, descriptions, links, and ratings.">
+  <title>Free Movie Downloads</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/dropdown/css/style.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/socicon/css/styles.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/theme/css/style.css?rnd=1715149129646">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/css/mbr-additional.css?rnd=1715149129646" type="text/css">
+ <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+</head>
+
+<body>
+<h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+						<strong>EDIT THE MOVIE "{{ movie.title }}"</strong>
+					</h3>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
+				<img class="w-100" src="{% static 'img/movieadd.png' %}"alt="Mobirise Website Builder">
+                 <div>
+
+                <p><h4><b>Are you a movie enthusiast looking to organize and curate your favorite films? Look no further! Our platform offers you a seamless experience to add and manage your liked movies along with their details.<br>
+                     <br>
+
+Adding movies to your collection is a breeze. Simply input the title, description, release date, actors, category, trailer link, and even upload an image to represent the movie. With our user-friendly interface, you can quickly fill in the details and hit submit.<br>
+<br>
+Once added, your movies will be neatly displayed in your personal collection. You can easily edit any movie's details whenever you want, ensuring that your collection stays up-to-date and accurately reflects your tastes.</b></h4></p>
+            </div>
+			</div>
+
+<div class="col-12 col-md-12 col-lg">
+    <div class="text-wrapper align-left">
+        <form method="post" action="{% url 'edit' movie.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ movie.title }}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="3">{{ movie.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="release_date">Release Date:</label>
+                <input type="date" class="form-control" id="release_date" name="release_date" value="{{ movie.release_date }}">
+            </div>
+            <div class="form-group">
+                <label for="actors">Actors:</label>
+                <input type="text" class="form-control" id="actors" name="actors" value="{{ movie.actors }}">
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category">
+                    <option value="malayalam_movie" {% if movie.category == 'malayalam_movie' %}selected{% endif %}>Malayalam Movie</option>
+                    <option value="english_movie" {% if movie.category == 'english_movie' %}selected{% endif %}>English Movie</option>
+                    <option value="tamil_movie" {% if movie.category == 'tamil_movie' %}selected{% endif %}>Tamil Movie</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="trailer_link">Trailer Link:</label>
+                <input type="url" class="form-control" id="trailer_link" name="trailer_link" value="{{ movie.trailer_link }}">
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+                <br>
+                {% if movie.image %}
+                    <img src="{{ movie.image.url }}" alt="{{ movie.title }}" style="max-height: 240px; object-fit: cover;">
+                {% endif %}
+            </div>
+            <input type="submit" class="btn btn-success" value="Save Changes">
+        </form>
+    </div>
+</div>
+
+ </body>
+</html>

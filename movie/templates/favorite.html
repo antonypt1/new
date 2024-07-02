@@ -1,0 +1,315 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="{% static 'assets/images/photo-1542204165-65bf26472b9b.jpeg' %}" type="image/x-icon">
+  <meta name="description" content="Explore the latest movies with free download options. Get access to movie photos, descriptions, links, and ratings.">
+  <title>Free Movie Downloads</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/dropdown/css/style.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/socicon/css/styles.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/theme/css/style.css?rnd=1715149129646">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/css/mbr-additional.css?rnd=1715149129646" type="text/css">
+<!--  <script src="{% static 'assets/ytplayer/index.js' %}"></script>-->
+<!--  <link rel="stylesheet" href="{% static 'path/to/your/css/styles.css' %}">-->
+ <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+   <style>
+
+       .favorite-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Optional: Adds space between the buttons */
+}
+ .card-container {
+            margin-bottom: 1cm;
+        }
+
+
+    </style>
+  <script>
+   let favoriteCount = {{ request.user.favoritemovie_set.count }};  // Initialize with the current count of favorite movies
+
+function toggleFavorite(movieId) {
+    const icon = document.getElementById(`heart-icon-${movieId}`);
+
+    if (icon.style.color === 'red') {
+        icon.style.color = 'white';
+        favoriteCount--;  // Decrement the favorite count when a movie is unfavorited
+        showMessage('The movie has been removed from your favorite list.');
+    } else {
+        if (favoriteCount < 15000) {  // Check if the favorite count is less than 15000
+            icon.style.color = 'red';
+            favoriteCount++;  // Increment the favorite count when a movie is favorited
+            showMessage('The movie has been added to your favorite list.');
+        } else {
+            alert('You can only add up to 15000 favorite movies.');
+            return;  // Exit the function to prevent further actions
+        }
+    }
+
+    fetch(`/home/favorite/?movieId=${movieId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Optionally, handle response data if needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function showMessage(message) {
+    alert(message);  // You can replace this with a more sophisticated message display mechanism if desired
+}
+
+.search-btn-oval {
+    border-radius: 50px; /* Makes the button oval */
+    padding: 10px 20px; /* Adjust padding for better appearance */
+    background-color: #007bff; /* Button background color */
+    border: none; /* Remove border */
+    color: white; /* Icon color */
+    display: flex; /* Flexbox to center the icon */
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+}
+
+.search-btn-oval i {
+    margin: 0; /* Remove default margin */
+}
+
+/* Optional: Adjust hover and focus styles for better UX */
+.search-btn-oval:hover,
+.search-btn-oval:focus {
+    background-color: #0056b3; /* Darker background on hover/focus */
+    outline: none; /* Remove focus outline */
+}
+
+  </script>
+</head>
+<body>
+
+  <section data-bs-version="5.1" class="menu menu2 cid-uca1Sf64NU" once="menu" id="menu-5-uca1Sf64NU">
+
+
+
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+
+						<img src="{% static 'img/movielogo.png' %}" alt="Mobirise Website Builder" style="height: 4.3rem;">
+
+				</span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4" href="https://mobiri.se">CineMagic</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+						<a class="nav-link link text-black display-4" href="{% url 'home' %}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link link text-black display-4" href="{% url 'note' %}" aria-expanded="false">About</a>
+					</li>
+					<li class="nav-item">
+			 <a class="nav-link link text-black display-4" href="{% url 'favorite' %}?movieId=3">Favorite</a>
+
+
+					</li></ul>
+
+
+<!-- search_results.html -->
+<div class="navbar-buttons mbr-section-btn">
+    <!-- Search bar -->
+    <form class="form-inline my-2 my-lg-0 mr-2" method="GET" action="{% url 'search' %}">
+        <input class="form-control form-control-sm mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary btn-sm search-btn-oval" type="submit"><i class="fa-brands fa-sistrix fa-2xl" style="color: #ffffff;"></i></button>
+    </form>
+</div>
+
+			</div>
+		</div>
+	</nav>
+
+
+  </section>
+  <section data-bs-version="5.1" class="header18 cid-uca1Sf79tk mbr-fullscreen" style="background-image: url('{% static 'img/movieban.png' %}');" data-bg-video="https://www.youtube.com/embed/I_KfwTmcAN4?autoplay=1&amp;loop=1&amp;playlist=I_KfwTmcAN4&amp;t=20&amp;mute=1&amp;playsinline=1&amp;controls=0&amp;showinfo=0&amp;autohide=1&amp;allowfullscreen=true&amp;mode=transparent" id="hero-16-uca1Sf79tk">
+    <div class="mbr-overlay"></div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="content-wrap col-12 col-md-12">
+          <h1 class="mbr-section-title mbr-fonts-style mb-4 display-1">
+            <strong style="color: white;">Movie Mania</strong>
+          </h1>
+          <p class="mbr-fonts-style mbr-text mb-4 display-7" style="text-align: center;">
+            <h4 style="color: aqua;">Step into a world of cinematic wonders where every frame tells a story and every character steals your heart</h4>
+          </p>
+          <div class="mbr-section-btn">
+            <a class="btn btn-white-outline display-7" href="">Explore Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+  <br>
+
+
+
+
+<!-- favorite.html -->
+
+    <h1 style="text-align:center"><b>Your Favorite Movie Collections</b></h1>
+  <br>
+  <br>
+<br><br>
+<div class="container">
+     <div class="row mbr-masonry" data-masonry='{"percentPosition": true}'>
+        {% for favorite in request.user.favoritemovie_set.all %}
+            <div class="col-12 col-md-6 col-lg-4  card-container">
+                <div class="card bg-dark text-white" style="width: 23rem; height: 40rem; position: relative;">
+                    <img src="{{ favorite.movie.image.url }}" class="card-img-top" alt="{{ favorite.movie.title }}" style="max-height: 240px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ favorite.movie.title }}</h5>
+                        <p class="card-text">{{ favorite.movie.description }}</p>
+                        <p class="card-text"><b>Release Date:</b> {{ favorite.movie.release_date }}</p>
+                        <p class="card-text"><b>Actors:</b> {{ favorite.movie.actors }}</p>
+                        <p class="card-text"><b>Category:</b> {{ favorite.movie.category }}</p>
+                        <div class="button-container">
+                             <a href="{{ favorite.movie.trailer_link }}" class="btn btn-primary">Trailer</a>
+                             <a href="{% url 'review_page' id=favorite.movie.id %}" class="btn btn-primary">Review</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+<section data-bs-version="5.1" class="social05 cid-uca1Sfat00" id="follow-us-2-uca1Sfat00">
+
+
+
+
+   <div class="container">
+        <div class="row">
+            <h3 class="mbr-section-title align-center mb-5 mbr-fonts-style display-2">
+                <strong>Join the Movie Mania</strong>
+            </h3>
+            <div class="col-12">
+                <div class="social-row">
+                    <div class="soc-item">
+                        <a href="" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-facebook"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://x.com/AntonyPTjomon?t=HRuVJo8vvCXa6FCISYlbBg&s=09" target="_blank">
+                            <span class="mbr-iconfont socicon-twitter socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://x.com/AntonyPTjomon?t=HRuVJo8vvCXa6FCISYlbBg&s=09" target="_blank">
+                            <span class="mbr-iconfont socicon-instagram socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.instagram.com/j__0m0n?igsh=eDNvaWdodnNyZWd2" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-linkedin"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.instagram.com/j__0m0n?igsh=eDNvaWdodnNyZWd2" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-twitch"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section data-bs-version="5.1" class="footer3 cid-uca1SfbALD" once="footers" id="footer-6-uca1SfbALD">
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="row-links">
+                 <ul class="header-menu">
+
+                <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/home" class="text-white">Home</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/home" class="text-white">Movies</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/note" class="text-white">About</a>
+                </li>
+                  </ul>
+              </div>
+
+
+            <div class="col-12 mt-4">
+                <p class="mbr-fonts-style copyright display-7">© 2024 Movie Mania. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+   <!-- Include the JavaScript file -->
+  <script src="{% static 'path/to/favorites.js' %}"></script>
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/vimeoplayer/player.js"></script>
+  <script src="assets/masonry/masonry.pkgd.min.js"></script>
+  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

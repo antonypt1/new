@@ -1,0 +1,164 @@
+
+
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1542204165-65bf26472b9b.jpeg" type="image/x-icon">
+  <meta name="description" content="Explore the latest movies with free download options. Get access to movie photos, descriptions, links, and ratings.">
+  <title>Free Movie Downloads</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/dropdown/css/style.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/socicon/css/styles.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/theme/css/style.css?rnd=1715149129646">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/css/mbr-additional.css?rnd=1715149129646" type="text/css">
+  <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="{% static 'assets/ytplayer/index.js' %}"></script>
+<script src="{% static 'assets/web/assets/jquery/jquery.min.js' %}"></script>
+
+    <style>
+
+body {
+    background: rgb(99, 39, 120);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8;
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none;
+    width: 200px; /* Adjust width as needed */
+    height: 80px; /* Adjust height as needed */
+    margin: 5px; /* Add margin for spacing */
+}
+
+
+.mt-5 {
+    margin-top: 5rem; /* Adjust top margin */
+}
+
+.profile-button:hover {
+    background: #682773;
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none;
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none;
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer;
+}
+
+.labels {
+    font-size: 11px;
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8;
+}
+.profile-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
+    </style>
+
+
+</head>
+
+<body><br>
+<br>
+<br>
+<!-- templates/profile.html -->
+<h1 style="text-align:center; color: white;"><b>USER PROFILE PAGE</b></h1>
+
+<div class="container rounded bg-white mt-5 mb-4">
+    <div class="row">
+        <div class="col-md-3 border-right">
+
+<div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    {% if user.profile.image %}
+        <img class="rounded-circle mt-5 profile-image" src="{{ user.profile.image.url }}" alt="Profile Image">
+    {% else %}
+        <img class="rounded-circle mt-5 profile-image" src="{% static 'img/user.png' %}" alt="Default Profile Image">
+    {% endif %}
+                <span class="font-weight-bold">{{ user.first_name }}</span>
+                <span class="text-black-50">{{ user.email }}</span>
+            </div>
+        </div>
+
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+
+                <!-- Profile Update Form -->
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="labels">Name</label>
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ user.first_name }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Surname</label>
+                            <input type="text" class="form-control" name="last_name" placeholder="Surname" value="{{ user.last_name }}">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Email</label>
+                            <input type="text" class="form-control" name="email" placeholder="Enter Email" value="{{ user.email }}">
+                        </div>
+                    </div>
+
+                      <div class="form-group mt-3">
+                        <label for="image">Profile Image</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
+                    <div class="mt-5 text-center">
+                                <h3> <button type="submit" class="btn btn-primary profile-button ">Update Profile</button>
+                                <a class="btn btn-primary profile-button display-7" href="{% url 'home' %}"> Home</a></h3>
+                          </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

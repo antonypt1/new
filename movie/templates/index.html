@@ -1,0 +1,718 @@
+
+{% load static %}
+{% load custom_filters %}
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <!-- Site made with Mobirise Online Website Builder v5.9.13, https://a.mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.13, a.mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/photo-1542204165-65bf26472b9b.jpeg" type="image/x-icon">
+  <meta name="description" content="Explore the latest movies with free download options. Get access to movie photos, descriptions, links, and ratings.">
+  <title>Free Movie Downloads</title>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/web/assets/mobirise-icons2/mobirise2.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-grid.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/bootstrap/css/bootstrap-reboot.min.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/dropdown/css/style.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/socicon/css/styles.css?rnd=1715149129646">
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/theme/css/style.css?rnd=1715149129646">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Brygada+1918:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="stylesheet" href="https://r.mobirisesite.com/430795/assets/css/mbr-additional.css?rnd=1715149129646" type="text/css">
+
+  <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Other head content -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="{% static 'assets/ytplayer/index.js' %}"></script>
+
+    <style>
+.item.features-image.col-12.col-md-6.col-lg-6.active {
+  position: relative;
+  left: 2cm; / Adjust as needed /
+
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: OffWhite;
+}
+
+.icon font-wrapper .mbr-icon font {
+            font-size: 1.5rem;
+            color: #FFD700; /* Gold color for stars */
+        }
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Optional: Adds space between the buttons */
+}
+
+.favorite-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+</style>
+</head>
+
+
+
+<body>
+  
+  <section data-bs-version="5.1" class="menu menu2 cid-uca1Sf64NU" once="menu" id="menu-5-uca1Sf64NU">
+	
+
+
+<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+    <div class="container">
+        <div class="navbar-brand">
+            <span class="navbar-logo">
+                <a href="">
+                    <img src="{% static 'img/movielogo.png' %}" alt="Mobirise Website Builder" style="height: 4.3rem;">
+                </a>
+            </span>
+            <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-4">CineMagic</a></span>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-4" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-4" href="{% url 'note'  %}" aria-expanded="false">About</a>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link link text-black display-4" href="{% url 'favorite_list' %}">Favorite</a>
+        </li>
+            </ul>
+
+            <!-- Right-side elements -->
+            <div class="navbar-nav ml-auto d-flex align-items-center">
+                <!-- Search bar -->
+                <form class="form-inline my-2 my-lg-0 mr-2" method="GET" action="{% url 'search' %}">
+                    <input class="form-control form-control-sm mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary btn-sm search-btn-oval" type="submit"><i class="fa-brands fa-sistrix fa-2xl" style="color: #ffffff;"></i></button>
+
+                </form>
+            </div>
+
+            <!-- User account icon -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link link text-black display-6" href="{% url 'profile' %}">
+                        <i class="fa-solid fa-house-user" style="color: #171617;"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .search-btn-oval {
+        border-radius: 20px; /* Adjust the value to make the button more or less oval */
+    }
+</style>
+
+
+
+
+
+
+</section>
+<section data-bs-version="5.1" class="header18 cid-uca1Sf79tk mbr-fullscreen" style="background-image: url('/static/img/movieban.png');" data-bg-video="https://www.youtube.com/embed/I_KfwTmcAN4?autoplay=1&amp;loop=1&amp;playlist=I_KfwTmcAN4&amp;t=20&amp;mute=1&amp;playsinline=1&amp;controls=0&amp;showinfo=0&amp;autohide=1&amp;allowfullscreen=true&amp;mode=transparent" id="hero-16-uca1Sf79tk">
+
+
+  <div class="mbr-overlay"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="content-wrap col-12 col-md-12">
+       <h1 class="mbr-section-title mbr-fonts-style mb-4 display-1">
+    <strong style="color: white;">Movie Mania</strong>
+</h1>
+
+        <p class="mbr-fonts-style mbr-text mb-4 display-7" style="text-align: center;">
+    <h4 style="color: aqua;"><b>Step into a world of cinematic wonders where every frame tells a story and every character steals your heart</b></h4>
+</p>
+
+        <div class="mbr-section-btn">
+          <a class="btn btn-white-outline display-7" href="">Explore Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section data-bs-version="5.1" class="article2 cid-uca1Sf8sbE" id="about-me-2-uca1Sf8sbE">
+	
+
+	
+	
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
+				<img class="w-100" src="{% static 'img/action1.png' %}"alt="Mobirise Website Builder">
+			</div>
+			<div class="col-12 col-md-12 col-lg">
+				<div class="text-wrapper align-left">
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+						<strong>Lights, Camera, Action!</strong>
+					</h1>
+					<p class="mbr-text align-left mbr-fonts-style mb-3 display-7">Welcome to CineMagic, the ultimate destination for movie enthusiasts! Dive into a realm where imagination meets reality, and every film leaves you craving for more.</p>
+
+					<p class="mbr-text align-left mbr-fonts-style mb-3 display-7">Our passion for movies drives us to curate the best selection of films that will transport you to different worlds and evoke a myriad of emotions.</p>
+
+					<p class="mbr-text align-left mbr-fonts-style mb-3 display-7">Join us on this cinematic journey and experience the magic of storytelling like never before!</p>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="news08 cid-uca1Sf8iN6" id="blog-3-uca1Sf8iN6">
+
+
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 content-head">
+                <div class="mbr-section-head">
+                    <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                        <strong>Latest Movie Collection </strong>
+                    </h4>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Inside your index.html template -->
+
+<div class="container">
+    <div class="row mbr-masonry" data-masonry='{"percentPosition": true}'>
+        {% for movie in movies %}
+            <div id="movie-card-{{ movie.id }}" class="item features-image col-12 col-md-6 col-lg-4 active">
+                <div class="item-wrapper">
+                    <div class="card bg-dark text-white" style="width: 23rem; height: 40rem; position: relative;">
+                        <img src="{{ movie.image.url }}" class="card-img-top" alt="{{ movie.title }}" style="max-height: 240px; object-fit: cover;">
+                        <!-- Favorite Icon -->
+                        <i id="heart-icon-{{ movie.id }}" class="fas fa-heart"
+                            style="position: absolute; top: 10px; right: 10px; color: {% if movie in request.user.favorite_movies.all %}red{% else %}white{% endif %}; font-size: 2rem; cursor: pointer;"
+                            onclick="toggleFavorite('{{ movie.id }}')"></i>
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }}</h5>
+                            <p class="card-text">{{ movie.description }}</p>
+                            <p class="card-text"><b>Release Date:</b> {{ movie.release_date }}</p>
+                            <p class="card-text"><b>Actors:</b> {{ movie.actors }}</p>
+                            <p class="card-text"><b>Category:</b> {{ movie.category }}</p>
+
+                            <div class="button-container">
+                                <a href="{{ movie.trailer_link }}" class="btn btn-primary">Trailer</a>
+                                <a href="{% url 'review_page' id=movie.id %}" class="btn btn-primary">Review</a>
+
+                            </div>
+
+                            {% if movie.user == request.user %}
+                        <div class="button-container mt-2">
+                            <a href="{% url 'edit' movie.id %}">
+                                <i class="fa fa-edit" style="font-size: 1.5rem;"></i> Edit
+                            </a>
+                            <a href="{% url 'delete' movie.id %}">
+                                <i class="fa fa-trash-o" style="font-size: 1.5rem; color: red;"></i> Delete
+                            </a>
+
+                        </div>
+                    {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- JavaScript for handling the favorite icon click -->
+<script>
+let favoriteCount = {{ request.user.favoritemovie_set.count }};  // Initialize with the current count of favorite movies
+
+function toggleFavorite(movieId) {
+    const icon = document.getElementById(`heart-icon-${movieId}`);
+
+    if (icon.style.color === 'red') {
+        icon.style.color = 'white';
+        favoriteCount--;  // Decrement the favorite count when a movie is unfavorited
+        showMessage('The movie has been removed from your favorite list.');
+    } else {
+        if (favoriteCount < 15000) {  // Check if the favorite count is less than 15000
+            icon.style.color = 'red';
+            favoriteCount++;  // Increment the favorite count when a movie is favorited
+            showMessage('The movie has been added to your favorite list.');
+        } else {
+            alert('You can only add up to 15000 favorite movies.');
+            return;  // Exit the function to prevent further actions
+        }
+    }
+
+    fetch(`/home/favorite/?movieId=${movieId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Optionally, handle response data if needed
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function showMessage(message) {
+    alert(message);  // You can replace this with a more sophisticated message display mechanism if desired
+}
+</script>
+
+
+
+    <!-- Pagination links -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if movies.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ movies.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ movies.number }} of {{ movies.paginator.num_pages }}.
+            </span>
+            {% if movies.has_next %}
+                <a href="?page={{ movies.next_page_number }}">next</a>
+                <a href="?page={{ movies.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+
+<br>
+    <br>
+
+    <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+						<strong>Add To Your Liked Movie</strong>
+					</h3>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
+				<img class="w-100" src="{% static 'img/movieadd.png' %}"alt="Mobirise Website Builder">
+                 <div>
+
+                <p><h4><b>Are you a movie enthusiast looking to organize and curate your favorite films? Look no further! Our platform offers you a seamless experience to add and manage your liked movies along with their details.<br>
+                     <br>
+
+Adding movies to your collection is a breeze. Simply input the title, description, release date, actors, category, trailer link, and even upload an image to represent the movie. With our user-friendly interface, you can quickly fill in the details and hit submit.<br>
+<br>
+Once added, your movies will be neatly displayed in your personal collection. You can easily edit any movie's details whenever you want, ensuring that your collection stays up-to-date and accurately reflects your tastes.</b></h4></p>
+            </div>
+			</div>
+
+			<div class="col-12 col-md-12 col-lg">
+				<div class="text-wrapper align-left">
+
+
+<form method="post" action="{% url 'add' %}" enctype="multipart/form-data" class="p-3 shadow">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="release_date">Release Date:</label>
+        <input type="date" class="form-control" id="release_date" name="release_date">
+    </div>
+    <div class="form-group">
+        <label for="actors">Actors:</label>
+        <input type="text" class="form-control" id="actors" name="actors" placeholder="Enter actors">
+    </div>
+
+    <div class="form-group">
+    <label for="category">Category:</label>
+
+    <select class="form-control" id="category" name="category" >
+        <option value="Enter category" disabled selected hidden>Enter category </option>
+        <option value="malayalam_movie">Malayalam Movie</option>
+        <option value="english_movie">English Movie</option>
+        <option value="thamil_movie">Tamil Movie</option>
+    </select>
+
+</div>
+
+    <div class="form-group">
+        <label for="trailer_link">Trailer Link:</label>
+        <input type="url" class="form-control" id="trailer_link" name="trailer_link" placeholder="Enter trailer link">
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+    <input type="submit" class="btn btn-success" value="Add Movie">
+</form>
+ {% if movie.id %}
+        <a href="{% url 'edit' movie.id %}" class="btn btn-primary btn-oval">Edit</a>
+    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section data-bs-version="5.1" class="article8 cid-uca1Sf85GH" id="generic-text-8-uca1Sf85GH">
+  
+
+  
+  <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+                    <strong>Malayalam movies</strong>
+                </h3>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="image-wrapper d-flex justify-content-center mb-4">
+            <img src="{% static 'img/malfim.png' %}" alt="Mobirise Website Builder">
+          </div>
+          <div class="card-content-text">
+            <h3 class="card-title mbr-fonts-style mbr-white mt-3 mb-4 display-2">
+            <strong>Movie Mania Madness</strong>
+          </h3>
+          <div class="row card-box align-left">
+            <div class="item features-without-image col-12">
+              <div class="item-wrapper">
+                
+                <p class="mbr-text mbr-fonts-style display-7">Ever since the pandemic in 2020, the Indian film industry in general has been having it tough with attracting footfalls to theaters, and is now mostly reliant on big budget productions and OTTs for staying afloat. The regional Malayalam film industry, also known as Mollywood from Kerala is no different in this regard.</p>
+              </div>
+            </div><div class="item features-without-image col-12">
+              <div class="item-wrapper">
+                
+                <p class="mbr-text mbr-fonts-style display-7">Save a few hits here and there that helped the box-office boost, Malayalam cinema has been facing an epidemic of its own, which is back to back flops and a struggle in drawing theatrical audience for direct Malayalam movies. Last year i.e. 2023 was the probably the worst for Mollywood, since close to 114 films released in the first half, but only two 2018: Everyone is a hero and Romancham were declared hits. In 2022 i.e. the year previous, out of 176 Malayalam films that released in theaters, only 17 managed to make profits.</p>
+              </div>
+            </div>
+            
+            
+            
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section data-bs-version="5.1" class="article8 cid-uca1Sf85GH" id="generic-text-8-uca1Sf85GH">
+
+
+
+  <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+                    <strong>English movies</strong>
+                </h3>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="image-wrapper d-flex justify-content-center mb-4">
+            <img src="{% static 'img/epg.png' %}" alt="Mobirise Website Builder">
+          </div>
+          <div class="card-content-text">
+            <h3 class="card-title mbr-fonts-style mbr-white mt-3 mb-4 display-2">
+            <strong>Movie Mania Madness</strong>
+          </h3>
+          <div class="row card-box align-left">
+            <div class="item features-without-image col-12">
+              <div class="item-wrapper">
+
+                <p class="mbr-text mbr-fonts-style display-7">This year is going to be a tough one for moviegoers. Analysts are expecting box office revenue to drop, with some weekends not even receiving new releases. Why? As I pointed out last year amid the historic Hollywood labor strikes, viewers were always going to feel their effects in a delayed fashion: Last year, the studios had enough content on the schedule to maintain the illusion of business as usual while they dragged their feet on making a fair deal with writers and actors. But you can’t put the industry on pause for half a year with no consequences — and the average consumer is finally going to notice. A lot of productions have been postponed, release dates have been moved, and as a result, 2024 is looking a tad anemic right now.</p>
+              </div>
+            </div><div class="item features-without-image col-12">
+              <div class="item-wrapper">
+
+<!--                <p class="mbr-text mbr-fonts-style display-7">Welcome to the ultimate movie extravaganza! Dive into a world of cinematic wonders where every frame tells a story.</p>-->
+              </div>
+            </div>
+
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="article8 cid-uca1Sf85GH" id="generic-text-8-uca1Sf85GH">
+
+
+
+  <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2 text-center">
+                    <strong>Thamil movies</strong>
+                </h3>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="card col-md-12 col-lg-10">
+        <div class="card-wrapper">
+          <div class="image-wrapper d-flex justify-content-center mb-4">
+            <img src="{% static 'img/Tamil.png' %}" alt="Mobirise Website Builder">
+          </div>
+          <div class="card-content-text">
+            <h3 class="card-title mbr-fonts-style mbr-white mt-3 mb-4 display-2">
+            <strong>Movie Mania Madness</strong>
+          </h3>
+          <div class="row card-box align-left">
+            <div class="item features-without-image col-12">
+              <div class="item-wrapper">
+
+                <p class="mbr-text mbr-fonts-style display-7">Tamil Upcoming Movies 2024: Tamil cinema is one of the most vibrant and diverse film industries in India. It is known for its innovative filmmaking, catchy music, and emotional stories. Tamil movies are popular all over the world, and Tamil filmmakers are constantly pushing the boundaries of what is possible in cinema. </p>
+              </div>
+            </div><div class="item features-without-image col-12">
+              <div class="item-wrapper">
+
+                <p class="mbr-text mbr-fonts-style display-7">OTT platforms like Hotstar, Amazon Prime Video, and Netflix have provided audiences the opportunity to watch their movies at ease. Among the most awaited releases are Rajinikanth's Lal Salaam, Sivakarthikeyan's Ayalaan, Kamal Haasan's Indian 2 and Thug Life, Suriya's Kanguva, Vijay's GOAT, Ajikth Kumar's Vidaamuyarchi, Vijay Sethupathi's Viduthalai 2, Dhanush's Captain Miller, Vikram's Thangalaan, and several other eagerly anticipated films.</p>
+              </div>
+            </div>
+
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JavaScript dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <section data-bs-version="5.1" class="header09 startm5 cid-uca1Sf9SPU" id="call-to-action-2-uca1Sf9SPU">
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="content-wrap col-12 col-md-6">
+                <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-2">
+                    <strong>Lights, Camera, Action! Dive In Now!</strong>
+                </h1>
+
+                <p class="mbr-fonts-style mbr-text mbr-white mb-4 display-7">Experience the magic of movies like never before. Start your cinematic journey today!</p>
+                <div class="mbr-section-btn">
+                    <a class="btn btn-primary display-7" href="{% url 'note' %}">Open Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section data-bs-version="5.1" class="features023 cid-uca1Sf981M" id="metrics-1-uca1Sf981M">
+
+
+
+
+
+    <div class="container">
+
+        <div class="row content-row justify-content-center">
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>1000+</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Movies Galore</strong>
+                    </h4>
+
+                </div>
+            </div>
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>5M+</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Happy Users</strong>
+                    </h4>
+
+                </div>
+            </div>
+            <div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
+                <div class="item-wrapper">
+                    <div class="title mb-2 mb-md-3">
+                        <span class="num mbr-fonts-style display-1">
+                            <strong>99%</strong></span>
+                    </div>
+                    <h4 class="card-title mbr-fonts-style display-5">
+                        <strong>Satisfaction Rate</strong>
+                    </h4>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section data-bs-version="5.1" class="video04 cid-uca1Sfastb" id="video-6-uca1Sfastb">
+
+
+  <div class="container">
+    <div class="mbr-section-head mb-5">
+      <h4 class="mbr-section-title mbr-fonts-style mb-0 mt-0 display-2">
+        <strong>Lights, Camera, Action!</strong>
+
+
+
+      </h4>
+
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 video-block">
+
+<!--       <div class="video-wrapper"><iframe class="mbr-embedded-video" src="https://www.youtube.com/embed/zgrTLqL34qo?rel=0&amp;amp;mute=1&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;playlist=zgrTLqL34qo" width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>-->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-bs-version="5.1" class="social05 cid-uca1Sfat00" id="follow-us-2-uca1Sfat00">
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <h3 class="mbr-section-title align-center mb-5 mbr-fonts-style display-2">
+                <strong>Join the Movie Mania</strong>
+            </h3>
+            <div class="col-12">
+                <div class="social-row">
+                    <div class="soc-item">
+                        <a href="" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-facebook"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://x.com/AntonyPTjomon?t=HRuVJo8vvCXa6FCISYlbBg&s=09" target="_blank">
+                            <span class="mbr-iconfont socicon-twitter socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://x.com/AntonyPTjomon?t=HRuVJo8vvCXa6FCISYlbBg&s=09" target="_blank">
+                            <span class="mbr-iconfont socicon-instagram socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.instagram.com/j__0m0n?igsh=eDNvaWdodnNyZWd2" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-linkedin"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.instagram.com/j__0m0n?igsh=eDNvaWdodnNyZWd2" target="_blank">
+                            <span class="mbr-iconfont socicon socicon-twitch"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section data-bs-version="5.1" class="footer3 cid-uca1SfbALD" once="footers" id="footer-6-uca1SfbALD">
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="row-links">
+                <ul class="header-menu">
+
+                <li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/home" class="text-white">Home</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/home" class="text-white">Movies</a>
+                  </li><li class="header-menu-item mbr-fonts-style display-5">
+                    <a href="/note" class="text-white">About</a>
+                </li>
+                  </ul>
+              </div>
+
+
+            <div class="col-12 mt-4">
+                <p class="mbr-fonts-style copyright display-7">© 2024 Movie Mania. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+   <!-- Include the JavaScript file -->
+  <script src="{% static 'path/to/favorites.js' %}"></script>
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/ytplayer/index.js"></script>
+  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="assets/vimeoplayer/player.js"></script>
+  <script src="assets/masonry/masonry.pkgd.min.js"></script>
+  <script src="assets/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script src="assets/formoid/formoid.min.js"></script>
+
+
+
+</body>
+</html>
